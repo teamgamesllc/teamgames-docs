@@ -37,6 +37,11 @@
 * [Errors](debugging/errors.md)
 * [FAQ](debugging/faq.md)
 
+## Contributors
+
+* [How to Contribute](contributors/how-to-contribute.md)
+* [Contributions](contributors/contributions.md)
+
 ## Support Channels
 
 * [Community Discord](support-channels/community-discord.md)
