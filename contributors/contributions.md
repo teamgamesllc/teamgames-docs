@@ -7,7 +7,7 @@ description: >-
 
 # Contributions
 
-We want to express our deepest gratitude to all of our contributors. Their contributions to TeamGames library has served to help the community and improved useability in one way or another improved the useability of TeamGames.
+We want to express our deepest gratitude to all of our contributors. Their contributions to TeamGames library has served to help the community and improved useability in one way or another. We rely on contributions and feedback in order to continue improving.
 
 ### Library Contributions
 
