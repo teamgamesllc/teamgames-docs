@@ -1,6 +1,6 @@
 ---
 description: >-
-  TeamGames LLC supports a growing list of games, providing APIs that facilitate
+  TeamGames supports a growing list of games, providing APIs that facilitate
   game integration and development. Below is the current list of supported games
   along with relevant links to access their
 ---
