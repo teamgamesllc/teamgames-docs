@@ -4,7 +4,7 @@
 
 ### Endpoint URL
 
-`POST https://api.teamgames.io/v3/store/transaction/update`
+<mark style="color:green;">`POST`</mark> `https://api.teamgames.io/v3/store/transaction/update`
 
 ### Request Headers
 
