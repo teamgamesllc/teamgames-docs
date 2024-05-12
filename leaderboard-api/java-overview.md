@@ -21,6 +21,7 @@ The `Leaderboard` class provides methods for setting up and submitting player me
 * `setUserRole(String role)`: Sets the user role.
 * `addMetadata(String key, Object value)`: Adds metadata key-value pair.
 * `submit()`: Submits the player metrics to the leaderboard API.
+* `submitAsync()`: Submits the player metrics to the leaderboard API asynchronously
 
 #### Class: `PlayerMetric`
 
@@ -60,5 +61,5 @@ new Leaderboard()
     .setPlayerName("Nelson")
     .setPlayerMetrics(metrics)
     .setDebugMessage(false)
-    .submit();
+    .submitAsync();
 ```
