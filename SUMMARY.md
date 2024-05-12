@@ -13,7 +13,7 @@
 
 ## STORE API
 
-* [Overview](store-api/overview.md)
+* [Java Overview](store-api/java-overview.md)
 * [Endpoints](store-api/endpoints.md)
 
 ## VOTE API
