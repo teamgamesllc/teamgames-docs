@@ -3,7 +3,6 @@
 ## Welcome
 
 * [Introduction to TeamGames](README.md)
-* [Our Core Mission](welcome/our-core-mission.md)
 
 ## Pre-installation
 
