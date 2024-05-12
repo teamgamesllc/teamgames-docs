@@ -1,7 +1,5 @@
 # Introduction to TeamGames
 
-## Introduction to TeamGames
-
 Welcome to TeamGames, and thank you for joining us! We are thrilled to have you as part of our community of game developers and creators. Our mission is to empower creators like you to bring your innovative visions to life, and we are committed to providing the support and tools you need to succeed.
 
 **Why TeamGames?** At TeamGames, we're more than just a service provider; we're your partners in creativity. Our team is made up of passionate gamers and developers who understand your needs and challenges. We stand behind our products and services, and we're dedicated to offering the best possible experience.
