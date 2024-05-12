@@ -16,7 +16,7 @@
 
 ## VOTE API
 
-* [Overview](vote-api/overview.md)
+* [Java Overview](vote-api/java-overview.md)
 * [Endpoints](vote-api/endpoints.md)
 
 ## LEADERBOARD API
