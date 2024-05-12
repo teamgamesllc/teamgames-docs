@@ -23,7 +23,7 @@
 
 ## LEADERBOARD API
 
-* [Overview](leaderboard-api/overview.md)
+* [Java Overview](leaderboard-api/java-overview.md)
 * [Endpoints](leaderboard-api/endpoints.md)
 
 ## Toplist (Non API)
