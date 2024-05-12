@@ -6,10 +6,11 @@
 
 <mark style="color:green;">`POST`</mark> `https://api.teamgames.io/v3/store/transaction/update`
 
-### Request Headers
+### Headers
 
-* `Content-Type: application/x-www-form-urlencoded`
-* `Authorization: Bearer <base64_encoded_api_key>`
+<table><thead><tr><th width="177">Header</th><th width="249">Type</th><th>Description</th></tr></thead><tbody><tr><td>Authorization</td><td>string</td><td>Bearer token for API key authentication</td></tr></tbody></table>
+
+#### Request Body
 
 ### Request Parameters
 
