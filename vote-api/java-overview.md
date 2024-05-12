@@ -4,6 +4,24 @@
 
 The Vote API in the TeamGames framework enables developers to integrate voting functionalities, specifically for claiming vote rewards within games. This documentation provides a comprehensive guide on using the `VoteEndpoint` class to interface with the TeamGames system to validate and claim rewards for players based on their voting actions.
 
+### Usage Example
+
+Below is an example of how to use the `VoteEndpoint` to claim a reward:
+
+```java
+VoteEndpoint voteEndpoint = new VoteEndpoint();
+voteEndpoint.setApiKey("your_api_key")
+            .setPlayerName("player123")
+            .setRewardId("reward_id")
+            .setAmount("100");
+try {
+    ClaimReward reward = voteEndpoint.getReward();
+    System.out.println("Reward claimed: " + reward);
+} catch (Exception e) {
+    System.err.println("Error claiming reward: " + e.getMessage());
+}
+```
+
 ### Classes and Methods
 
 #### `VoteEndpoint` Class
@@ -50,21 +68,3 @@ The Vote API in the TeamGames framework enables developers to integrate voting f
 * `public static void setRequestProperties(HttpURLConnection conn, byte[] postDataBytes) throws Exception`
   * Sets the necessary HTTP headers for the POST request.
   * Throws `Exception` if unable to set the properties.
-
-### Usage Example
-
-Below is an example of how to use the `VoteEndpoint` to claim a reward:
-
-```java
-VoteEndpoint voteEndpoint = new VoteEndpoint();
-voteEndpoint.setApiKey("your_api_key")
-            .setPlayerName("player123")
-            .setRewardId("reward_id")
-            .setAmount("100");
-try {
-    ClaimReward reward = voteEndpoint.getReward();
-    System.out.println("Reward claimed: " + reward);
-} catch (Exception e) {
-    System.err.println("Error claiming reward: " + e.getMessage());
-}
-```

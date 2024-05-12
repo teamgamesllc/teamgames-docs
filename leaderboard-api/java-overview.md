@@ -10,6 +10,26 @@ description: >-
 
 The `Leaderboard` class provides methods for setting up and submitting player metrics to the leaderboard API.
 
+### Usage Example
+
+```java
+List<PlayerMetric> metrics = new ArrayList<>();
+
+// Add player metrics
+metrics.add(new PlayerMetric("Attack").setValue(99).setProgress(1000000));
+metrics.add(new PlayerMetric("Defense").setValue(99).setProgress(1000000));
+// ... add more metrics
+
+// Submit metrics to the leaderboard API
+new Leaderboard()
+    .setApiKey("your_api_key")
+    .setGameMode("Normal Mode")
+    .setPlayerName("Nelson")
+    .setPlayerMetrics(metrics)
+    .setDebugMessage(false)
+    .submitAsync();
+```
+
 **Methods:**
 
 * `setApiKey(String apiKey)`: Sets the API key for authentication.
@@ -43,23 +63,3 @@ The `Post` class provides methods for sending POST requests to the server.
 
 * `sendPostData(Map<String, Object> params, String location, String apiKey)`: Sends a POST request with the specified parameters, location, and API key.
 * `setRequestProperties(HttpURLConnection conn, byte[] postDataBytes)`: Sets the request properties for the HTTP connection.
-
-### Usage Example
-
-```java
-List<PlayerMetric> metrics = new ArrayList<>();
-
-// Add player metrics
-metrics.add(new PlayerMetric("Attack").setValue(99).setProgress(1000000));
-metrics.add(new PlayerMetric("Defense").setValue(99).setProgress(1000000));
-// ... add more metrics
-
-// Submit metrics to the leaderboard API
-new Leaderboard()
-    .setApiKey("your_api_key")
-    .setGameMode("Normal Mode")
-    .setPlayerName("Nelson")
-    .setPlayerMetrics(metrics)
-    .setDebugMessage(false)
-    .submitAsync();
-```
