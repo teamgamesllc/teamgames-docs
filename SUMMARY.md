@@ -27,9 +27,7 @@
 
 ## Toplist (Non API)
 
-* [Overview](toplist-non-api/overview.md)
 * [Callback](toplist-non-api/callback.md)
-* [Examples](toplist-non-api/examples.md)
 
 ## Debugging
 
