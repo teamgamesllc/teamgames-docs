@@ -4,13 +4,9 @@
 
 This endpoint is used to update the leaderboard with the player's latest skill data. It requires several pieces of information about the player and the game mode they are playing in.
 
-### HTTP Method
+### Endpoint URL
 
-`POST`
-
-### URL
-
-`https://api.teamgames.io/api/v3/leaderboard/update`
+<mark style="color:green;">`POST`</mark> `https://api.teamgames.io/v3/leaderboard/update`
 
 ### Headers
 
