@@ -10,9 +10,7 @@ This endpoint is used to update the leaderboard with the player's latest skill d
 
 ### Headers
 
-| Header        | Type   | Description                             |
-| ------------- | ------ | --------------------------------------- |
-| Authorization | string | Bearer token for API key authentication |
+<table><thead><tr><th width="192">Header</th><th width="249">Type</th><th>Description</th></tr></thead><tbody><tr><td>Authorization</td><td>string</td><td>Bearer token for API key authentication</td></tr></tbody></table>
 
 #### Request Body
 
