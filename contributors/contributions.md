@@ -11,7 +11,4 @@ We want to express our deepest gratitude to all of our contributors. Their contr
 
 ### Library Contributions
 
-* Otto
-* unfetteredcode
-* Titan
-* Glabay
+To have your name added here you must have an active contribution on our main branch. [https://github.com/teamgamesllc/teamgames-api](https://github.com/teamgamesllc/teamgames-api)
