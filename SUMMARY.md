@@ -34,7 +34,6 @@
 
 ## Contributors
 
-* [How to Contribute](contributors/how-to-contribute.md)
 * [Contributions](contributors/contributions.md)
 
 ## Support Channels
