@@ -8,7 +8,7 @@
 ## Pre-installation
 
 * [Authentication](pre-installation/authentication.md)
-* [Plugins](pre-installation/plugins.md)
+* [Supported Games](pre-installation/supported-games.md)
 * [Examples](pre-installation/examples.md)
 
 ## STORE API
