@@ -7,9 +7,7 @@ description: >-
 
 # Authentication
 
-## Authentication
-
-### Overview
+## Overview
 
 Our system uses API keys to authenticate requests made to our servers. This document outlines how to use your API key to make authenticated requests and provides details about security practices to ensure safe transmission of sensitive data.
 
@@ -25,8 +23,6 @@ To interact with our API, you need a valid API key. This key uniquely identifies
 Your API key must be included in every API call made to our servers. It should be included in the HTTPS header of your requests. Here is how to include it:
 
 #### Example of Adding API Key to HTTP Header
-
-
 
 {% tabs %}
 {% tab title="CURL" %}
