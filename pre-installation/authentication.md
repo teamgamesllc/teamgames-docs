@@ -26,10 +26,26 @@ Your API key must be included in every API call made to our servers. It should b
 
 #### Example of Adding API Key to HTTP Header
 
-```java
+
+
+{% tabs %}
+{% tab title="CURL" %}
+```
+bash
+curl -X POST "http://api.teamgames.io/v3/example-endpoint" \
+     -H "Authorization: Bearer YOUR_API_KEY_HERE" \
+     -H "Content-Type: application/json" \
+     -d '{"param1":"value1", "param2":"value2"}'
+```
+{% endtab %}
+
+{% tab title="Java" %}
+```
 HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 String encodedKey = Base64.getEncoder().encodeToString((apiKey).getBytes("UTF-8"));
 conn.setRequestMethod("POST");
 conn.setRequestProperty("Authorization", "Bearer " + encodedKey);
 ```
+{% endtab %}
+{% endtabs %}
 
