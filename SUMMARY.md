@@ -31,7 +31,6 @@
 
 ## Debugging
 
-* [Errors](debugging/errors.md)
 * [FAQ](debugging/faq.md)
 
 ## Contributors
