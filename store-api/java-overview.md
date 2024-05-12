@@ -11,7 +11,8 @@ The `Transaction` class facilitates interactions with the TeamGames store API, e
 To fetch transactions for a player "Nelson" using the `Transaction` class, you initialize the object, set the API key and player name, and call the `getTransactions` method. This endpoint will also set the transaction to claim to prevent further claiming. Here's how you do it:
 
 ```java
-Transaction transaction = new Transaction().setApiKey("your_api_key_here").setPlayerName("Nelson");
+Transaction transaction = new Transaction()
+.setApiKey("your_api_key_here").setPlayerName("Nelson");
 
 try {
     Transaction[] transactions = transaction.getTransactions();
