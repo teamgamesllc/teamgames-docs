@@ -6,7 +6,7 @@ The Vote API endpoint provides the necessary functionality to claim rewards base
 
 ### Endpoint URL
 
-<mark style="color:green;">`POST`</mark> `https://api.teamgames.io/v3/vote/reward/submit`
+<mark style="color:green;">`POST`</mark> `https://api.teamgames.io/v3/vote/reward/claim`
 
 ### Headers
 
