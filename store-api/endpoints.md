@@ -38,7 +38,7 @@ The response is in JSON format and contains an array of `Transaction` objects.
 
 ```bash
 curl -X POST \
-  'https://api.teamgames.io/v3/store/transaction/update' \
+  'https://api.teamgames.io/v3/store/transaction/claim' \
   -H 'Authorization: Bearer <base64_encoded_api_key>' \  
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -d 'playerName=Nelson'
