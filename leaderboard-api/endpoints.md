@@ -42,7 +42,6 @@ Authorization: Bearer <apiKey>
 Content-Type: application/json
 
 {
-  "secret": "<apiKey>",
   "gameMode": "Normal Mode",
   "playerName": "Nelson",
   "metrics": [
