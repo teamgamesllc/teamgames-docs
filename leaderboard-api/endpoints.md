@@ -6,7 +6,7 @@ This endpoint is used to update the leaderboard with the player's latest skill d
 
 ### Endpoint URL
 
-<mark style="color:green;">`POST`</mark> `https://api.teamgames.io/v3/leaderboard/update`
+<mark style="color:green;">`POST`</mark> `https://api.teamgames.io/v3/leaderboard/metrics/update`
 
 ### Headers
 
@@ -37,7 +37,7 @@ The endpoint will return a response indicating the status of the leaderboard upd
 #### Example Request
 
 ```
-POST /api/v3/leaderboard/update
+POST /api/v3/leaderboard/metrics/update
 Authorization: Bearer <apiKey>
 Content-Type: application/json
 
