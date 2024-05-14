@@ -63,3 +63,27 @@ Content-Type: application/json
 **Example Response**\
 \
 `{ "message": "Leaderboard updated successfully" }`
+
+### CURL Example
+
+Here is an example of how to make a request to the Vote API using CURL:
+
+```bash
+curl -X POST "https://api.teamgames.io/v3/leaderboard/metrics/update" \
+     -H "Authorization: Bearer your_api_key" \
+     -H "Content-Type: application/x-www-form-urlencoded; charset=UTF-8" \
+     --data-urlencode "gameMode=Normal Mode" \
+     --data-urlencode "playerName=player123" \
+     --data-urlencode "metrics=[
+         {
+             \"name\": \"Cooking\",
+             \"value\": 99,
+             \"progress\": 200000000
+         },
+         {
+             \"name\": \"Wins\",
+             \"value\": 10
+         }
+     ]"
+
+```
