@@ -60,10 +60,6 @@ Content-Type: application/json
 }
 ```
 
-**Example Response**\
-\
-`{ "message": "Leaderboard updated successfully" }`
-
 ### CURL Example
 
 Here is an example of how to make a request to the Vote API using CURL:
