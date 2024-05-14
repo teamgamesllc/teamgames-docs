@@ -26,9 +26,8 @@ The Vote API endpoint provides the necessary functionality to claim rewards base
 
 Here is an example of how to make a request to the Vote API using CURL:
 
-```bash
-curl -X POST https://api.teamgames.io/v3/vote/reward/claim \
--H "Authorization: Bearer $(echo -n 'your_api_key' | base64)" \
--H "Content-Type: application/x-www-form-urlencoded" \
--d "player=player123&reward=reward_id&amount=100"
-```
+<pre class="language-bash"><code class="lang-bash">curl -X POST https://api.teamgames.io/v3/vote/reward/claim \
+-H "Authorization: Bearer your_api_key" \
+<strong>-H "Content-Type: application/x-www-form-urlencoded; charset=UTF-8" \
+</strong>-d "player=player123&#x26;reward=reward_id&#x26;amount=100"
+</code></pre>
