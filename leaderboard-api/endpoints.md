@@ -14,21 +14,21 @@ This endpoint is used to update the leaderboard with the player's latest skill d
 
 #### Request Body
 
-| Parameter  | Type   | Description                              | Required |
-| ---------- | ------ | ---------------------------------------- | -------- |
-| gameMode   | string | Game mode identifier                     | Yes      |
-| playerName | string | Player name                              | Yes      |
-| ipAddress  | string | Player's IP address (optional)           | No       |
-| userRole   | string | Player's role (optional)                 | No       |
-| skills     | array  | Array of player's skill data (see below) | Yes      |
+| Parameter  | Type   | Description                                          | Required |
+| ---------- | ------ | ---------------------------------------------------- | -------- |
+| gameMode   | string | Game mode identifier                                 | Yes      |
+| playerName | string | Player name                                          | Yes      |
+| ipAddress  | string | Player's IP address (optional)                       | No       |
+| userRole   | string | Player's role (optional)                             | No       |
+| metrics    | array  | Array of player's skill or activity data (see below) | Yes      |
 
 Each object in the `skills` array should have the following structure:
 
-| Parameter  | Type    | Description      |
-| ---------- | ------- | ---------------- |
-| name       | string  | Skill name       |
-| level      | integer | Skill level      |
-| experience | integer | Skill experience |
+| Parameter | Type    | Description     |
+| --------- | ------- | --------------- |
+| name      | string  | Metric name     |
+| value     | integer | Metric value    |
+| progress  | integer | Metric progress |
 
 #### Response
 
@@ -45,16 +45,15 @@ Content-Type: application/json
   "secret": "<apiKey>",
   "gameMode": "Normal Mode",
   "playerName": "Nelson",
-  "skills": [
+  "metrics": [
     {
       "name": "Attack",
-      "level": 99,
-      "experience": 1000000
+      "value": 99,
+      "progress": 200000000
     },
     {
-      "name": "Defense",
-      "level": 99,
-      "experience": 1000000
+      "name": "Wins",
+      "value": 1
     },
     ...
   ]
