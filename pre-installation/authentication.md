@@ -29,7 +29,7 @@ Your API key must be included in every API call made to our servers. It should b
 ```
 bash
 curl -X POST "http://api.teamgames.io/v3/example-endpoint" \
-     -H "Authorization: Bearer YOUR_API_KEY_HERE" \
+     -H "X-API-Key: YOUR_API_KEY_HERE" \
      -H "Content-Type: application/json" \
      -d '{"param1":"value1", "param2":"value2"}'
 ```
@@ -38,9 +38,9 @@ curl -X POST "http://api.teamgames.io/v3/example-endpoint" \
 {% tab title="Java" %}
 ```
 HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-String encodedKey = Base64.getEncoder().encodeToString((apiKey).getBytes("UTF-8"));
+String apiKey= "YOUR_API_KEY_HERE";
 conn.setRequestMethod("POST");
-conn.setRequestProperty("Authorization", "Bearer " + encodedKey);
+conn.setRequestProperty("X-API-Key", apiKey);
 ```
 {% endtab %}
 {% endtabs %}
