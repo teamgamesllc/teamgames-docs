@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Java Overview
 
 ## Transaction Class

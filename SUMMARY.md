@@ -12,7 +12,11 @@
 ## STORE API
 
 * [Java Overview](store-api/java-overview.md)
+* [TeamGames Storefront Java SDK](store-api/teamgames-storefront-java-sdk.md)
+* [TeamGames Storefront REST Endpoints](store-api/teamgames-storefront-rest-endpoints.md)
 * [Endpoints](store-api/endpoints.md)
+* [Custom Interface Endpoints](store-api/custom-interface-endpoints.md)
+* [Endpoints](store-api/endpoints-1.md)
 
 ## VOTE API
 
