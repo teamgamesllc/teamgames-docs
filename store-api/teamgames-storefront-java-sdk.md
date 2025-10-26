@@ -1,17 +1,11 @@
 ---
 description: >-
   Welcome! This guide walks you through the Java helpers that ship with the
-  GamePayments platform. It is written for developers who are new to the SDK and
+  TeamGames platform. It is written for developers who are new to the SDK and
   want a practical, end‑to‑end integration path.
 ---
 
 # TeamGames Storefront Java SDK
-
-## TeamGames Storefront Java SDK
-
-Welcome! This guide walks you through the Java helpers that ship with the TeamGames platform. It is written for developers who are new to the SDK and want a practical, end‑to‑end integration path.
-
-***
 
 ### 1. Before You Start
 
