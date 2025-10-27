@@ -9,44 +9,17 @@ description: >-
 
 ### 1. Before You Start
 
-| Requirement                                    | Why it matters                                                                                |
-| ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| Java 8 or newer                                | All helpers compile against Java 8 bytecode.                                                  |
-| TeamGames API key (`TEAMGAMES_API_KEY`)        | Authenticates every request. Grab it from the TeamGames dashboard.                            |
-| Internet access to `https://api.teamgames.io/` | The helpers point to this domain by default.                                                  |
-| Optional: local API sandbox                    | Toggle by calling `JsonPost.setLocal(true)` / `Post.setLocal(true)` before issuing a request. |
+| Requirement                                    | Why it matters                                                     |
+| ---------------------------------------------- | ------------------------------------------------------------------ |
+| Java 8 or newer                                | All helpers compile against Java 8 bytecode.                       |
+| TeamGames API key (`TEAMGAMES_API_KEY`)        | Authenticates every request. Grab it from the TeamGames dashboard. |
+| Internet access to `https://api.teamgames.io/` | The helpers point to this domain by default.                       |
 
-> Tip: Export your API key once in your shell profile (`export TEAMGAMES_API_KEY=...`) so every demo and integration code pick it up automatically.
-
-***
-
-### 2. Quick Start (10 Minutes)
-
-1. **Open the SDK tests directory**\
-   `java-library/teamgames-api/src/com/teamgames/tests/store`
-2.  **Compile the sample**
-
-    ```bash
-    cd java-library/teamgames-api/src
-    javac com/teamgames/tests/store/StoreApiDemo.java
-    ```
-3.  **Run the full flow**
-
-    ```bash
-    export TEAMGAMES_API_KEY=your_api_key_here
-    # Optional: export TEAMGAMES_RUN_CHECKOUT=true   # performs a live checkout
-    java com.teamgames.tests.store.StoreApiDemo
-    ```
-4. **Observe the output**
-   * Catalog summary
-   * Optional checkout redirect
-   * Ready-made snippet showing how to grant purchases
-
-Once the demo works with your credentials, you can embed the same client classes into your own project.
+> Tip: Export your API key once in your shell profile (`export TEAMGAMES_API_KEY=...`) so every demo and integration code picks it up automatically.
 
 ***
 
-### 3. Core Building Blocks
+### 2. Core Building Blocks
 
 | Class                                            | Type            | What it does                                                                       |
 | ------------------------------------------------ | --------------- | ---------------------------------------------------------------------------------- |
@@ -66,7 +39,7 @@ Usage pattern:
 
 ***
 
-### 4. Deliver Purchases (Claim API)
+### 3. Deliver Purchases (Claim API)
 
 ```java
 import com.teamgames.endpoints.store.StoreClaimClient;
@@ -107,11 +80,11 @@ for (com.teamgames.lib.gson.JsonObject raw : claimResponse.data.rawTransactions)
 
 ***
 
-### 5. Optional: Build a Custom Storefront UI
+### 4. Optional: Build a Custom Storefront UI
 
 Want to mirror the web store inside your game launcher or website? Use the catalog and checkout helpers below. Skip this section if you only need to fulfill purchases.
 
-#### 5.1 Fetch the Product Catalog
+#### 4.1 Fetch the Product Catalog
 
 ```java
 import com.teamgames.endpoints.store.StoreCatalogClient;
@@ -131,7 +104,7 @@ catalogClient.fetchAsync()
     .exceptionally(ex -> { ex.printStackTrace(); return null; });
 ```
 
-#### 5.2 Build and Submit Checkout
+#### 4.2 Build and Submit Checkout
 
 ```java
 import com.teamgames.endpoints.store.StoreCheckoutClient;
@@ -156,7 +129,7 @@ Async submission works the same way using `submitAsync()` (optionally with your 
 
 ***
 
-### 6. Going Async
+### 5. Going Async
 
 Every client exposes `*Async()` variants. By default they use `Thread.executor`, a shared thread pool that ships with the SDK. To control concurrency:
 
@@ -175,7 +148,7 @@ Remember: each `newRequest()` builder is single-use. Create a fresh one for ever
 
 ***
 
-### 7. HTTP Configuration & Connection Pooling
+### 6. HTTP Configuration & Connection Pooling
 
 The SDK reuses HTTP connections and sets sensible defaults:
 
@@ -190,7 +163,7 @@ Add the flags to your JVM or application server startup command. Keep-alive dram
 
 ***
 
-### 8. Local Testing & Environments
+### 7. Local Testing & Environments
 
 Point the helpers at a development server:
 
@@ -203,7 +176,7 @@ Once the request finishes, the helper automatically clears the flag for that thr
 
 ***
 
-### 9. Troubleshooting
+### 8. Troubleshooting
 
 | Symptom                                              | Likely cause                                        | Quick fix                                                                                  |
 | ---------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------ |
@@ -217,7 +190,7 @@ Still stuck? Check the SDK tests (`StoreClaimClientTest`, `TestStoreCommand`) fo
 
 ***
 
-### 10. Where to Go Next
+### 9. Where to Go Next
 
 * **REST endpoints** — Need raw HTTP details or building a non-Java integration? See `docs/storefront-rest-endpoints.md`.
 * **Server delivery guide** — Step-by-step instructions for handing out items in-game: `docs/store-server-integration.md`.
