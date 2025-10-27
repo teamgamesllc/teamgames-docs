@@ -78,6 +78,32 @@ for (com.teamgames.lib.gson.JsonObject raw : claimResponse.data.rawTransactions)
 
 > `ClaimResponse.code` will be `SUCCESS`, `NO_ITEMS`, `RATE_LIMIT`, `SERVER_NOT_FOUND`, etc. Show those messages to your players for friendlier feedback.
 
+Prefer async? The same flow works with `executeAsync()`—reuse the shared executor or plug in your own:
+
+```java
+claimClient.newRequest()
+    .playerName("Player123")
+    .useV4Endpoint()
+    .preview(false)
+    .executeAsync()
+    .thenAccept(response -> {
+        if ("SUCCESS".equals(response.status)) {
+            for (Transaction tx : response.data.claims) {
+                System.out.printf("Grant product %s (id=%s) x %d%n",
+                    tx.product_name,
+                    tx.product_id_string,
+                    tx.product_amount);
+            }
+        } else {
+            System.out.println("Claim status: " + response.code + " :: " + response.message);
+        }
+    })
+    .exceptionally(ex -> {
+        ex.printStackTrace();
+        return null;
+    });
+```
+
 ***
 
 ### 4. Optional: Build a Custom Storefront UI
