@@ -7,7 +7,7 @@ description: >-
 
 # TeamGames Storefront Java SDK
 
-### 1. Before You Start
+## 1. Before You Start
 
 | Requirement                                    | Why it matters                                                     |
 | ---------------------------------------------- | ------------------------------------------------------------------ |
@@ -50,6 +50,7 @@ Transaction.ClaimResponse claimResponse = claimClient.newRequest()
     .playerName("Player123")
     .useV4Endpoint()   // structured envelope (recommended)
     .preview(false)    // set to true for dry runs
+    .includeRawTransactions(false) // opt-in when you need audit metadata
     .execute();
 
 if ("SUCCESS".equals(claimResponse.status)) {
@@ -66,7 +67,7 @@ if ("SUCCESS".equals(claimResponse.status)) {
 }
 ```
 
-Need audit info? Each response also contains `claimResponse.data.rawTransactions` as `JsonObject[]`:
+Need audit info? Flip `.includeRawTransactions(true)` (or inspect `claimResponse.data.rawTransactions`) to fetch the raw database rows as `JsonObject[]`:
 
 ```java
 for (com.teamgames.lib.gson.JsonObject raw : claimResponse.data.rawTransactions) {
@@ -85,6 +86,7 @@ claimClient.newRequest()
     .playerName("Player123")
     .useV4Endpoint()
     .preview(false)
+    .includeRawTransactions(false)
     .executeAsync()
     .thenAccept(response -> {
         if ("SUCCESS".equals(response.status)) {
