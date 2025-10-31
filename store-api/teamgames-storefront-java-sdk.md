@@ -7,7 +7,7 @@ description: >-
 
 # TeamGames Storefront Java SDK
 
-## 1. Before You Start
+### 1. Before You Start
 
 | Requirement                                    | Why it matters                                                     |
 | ---------------------------------------------- | ------------------------------------------------------------------ |
@@ -191,20 +191,7 @@ Add the flags to your JVM or application server startup command. Keep-alive dram
 
 ***
 
-### 7. Local Testing & Environments
-
-Point the helpers at a development server:
-
-```java
-JsonPost.setLocal(true); // applies to the next request on the same thread
-Post.setLocal(true);
-```
-
-Once the request finishes, the helper automatically clears the flag for that thread.
-
-***
-
-### 8. Troubleshooting
+### 7. Troubleshooting
 
 | Symptom                                              | Likely cause                                        | Quick fix                                                                                  |
 | ---------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------ |
@@ -216,9 +203,7 @@ Once the request finishes, the helper automatically clears the flag for that thr
 
 Still stuck? Check the SDK tests (`StoreClaimClientTest`, `TestStoreCommand`) for working examples, or open an issue with logs attached.
 
-***
-
-### 9. Where to Go Next
+### 8. Where to Go Next
 
 * **REST endpoints** — Need raw HTTP details or building a non-Java integration? See `docs/storefront-rest-endpoints.md`.
 * **Server delivery guide** — Step-by-step instructions for handing out items in-game: `docs/store-server-integration.md`.

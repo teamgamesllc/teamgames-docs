@@ -175,13 +175,15 @@ Authorization: BASE64_ENCODED_API_KEY
 
 {
   "playerName": "Player123",
-  "preview": false
+  "preview": false,
+  "includeRawTransactions": false
 }
 ```
 
 * `playerName` must match the value provided during checkout.
 * Base64-encode the same server API key used for catalog/checkout requests and send it via the `Authorization` header.
 * Set `preview` to `true` to perform a dry run (no items are granted and state remains unchanged).
+* `includeRawTransactions` defaults to `false`; set it to `true` only when you need the raw database rows for auditing or reconciliation.
 
 #### Sample Response
 
@@ -202,26 +204,12 @@ Authorization: BASE64_ENCODED_API_KEY
         "product_price": 14.99
       }
     ],
-    "rawTransactions": [
-      {
-        "productid": "42",
-        "price": "14.99",
-        "pricewithdiscount": "12.99",
-        "quantity": 1,
-        "givequantity": 5,
-        "allowreclaim": 0,
-        "username": "Player123",
-        "invoice": "INV-12345",
-        "paymenttype": "Stripe",
-        "paymentstatus": "Paid",
-        "deliverystatus": "Delivered"
-      }
-    ]
+    "rawTransactions": []
   }
 }
 ```
 
-`data.claims` mirrors the legacy response for quick integrations. `data.rawTransactions` exposes the original database rows with lowercase column names so you can inspect invoices, payment types, or other audit details. The v4 endpoint reuses the Base64 `Authorization` header pattern from catalog/checkout to keep authentication consistent.
+`data.claims` mirrors the legacy response for quick integrations. When `includeRawTransactions` is `true`, `data.rawTransactions` exposes the original database rows with lowercase column names so you can inspect invoices, payment types, or other audit details. Leave it `false` for day-to-day operations so sensitive details stay server-side. The v4 endpoint reuses the Base64 `Authorization` header pattern from catalog/checkout to keep authentication consistent.
 
 Common `code` values:
 
