@@ -3,6 +3,7 @@ description: >-
   Welcome to the Authentication section of our documentation. This page provides
   comprehensive details on how to securely authenticate with our API using API
   keys. You’ll find step-by-step instructions
+hidden: true
 ---
 
 # Authentication
