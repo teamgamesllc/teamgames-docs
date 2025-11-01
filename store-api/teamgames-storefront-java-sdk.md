@@ -7,8 +7,6 @@ description: >-
 
 # TeamGames Storefront Java SDK
 
-### 1. Before You Start
-
 | Requirement                                    | Why it matters                                                                                                                 |
 | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Java 8 or newer                                | All helpers compile against Java 8 bytecode.                                                                                   |
@@ -60,7 +58,7 @@ if ("SUCCESS".equals(claimResponse.status)) {
         System.out.printf("Grant product %s (id=%s) x %d%n",
             tx.product_name,
             tx.product_id_string,
-            tx.product_amount);
+            tx.quantity_to_grant);
     }
 } else if ("PREVIEW".equals(claimResponse.status)) {
     System.out.println("Preview only: " + claimResponse.message);
@@ -80,6 +78,8 @@ for (com.teamgames.lib.gson.JsonObject raw : claimResponse.data.rawTransactions)
 ```
 
 > `ClaimResponse.code` will be `SUCCESS`, `NO_ITEMS`, `RATE_LIMIT`, `SERVER_NOT_FOUND`, etc. Show those messages to your players for friendlier feedback.
+>
+> `tx.quantity_to_grant` is the number of units you should deliver (after "give" bonuses). Use `tx.quantity_purchased` if you need to know how many units the player paid for.
 
 Prefer async? The same flow works with `executeAsync()`—reuse the shared executor or plug in your own:
 
@@ -96,7 +96,7 @@ claimClient.newRequest()
                 System.out.printf("Grant product %s (id=%s) x %d%n",
                     tx.product_name,
                     tx.product_id_string,
-                    tx.product_amount);
+                    tx.quantity_to_grant);
             }
         } else {
             System.out.println("Claim status: " + response.code + " :: " + response.message);
@@ -124,6 +124,10 @@ StoreCatalogClient catalogClient = new StoreCatalogClient(apiKey);
 
 StoreCatalog.CatalogResponse catalog = catalogClient.fetch();
 System.out.println("Products available: " + catalog.products.length);
+
+long categoryId = 42; // replace with the category you want to display
+StoreCatalog.CatalogResponse swords = catalogClient.fetchByCategory(categoryId);
+System.out.println("Products in category " + categoryId + ": " + swords.products.length);
 ```
 
 Need async?
@@ -131,6 +135,10 @@ Need async?
 ```java
 catalogClient.fetchAsync()
     .thenAccept(result -> System.out.println("Fetched " + result.products.length + " products"))
+    .exceptionally(ex -> { ex.printStackTrace(); return null; });
+
+catalogClient.fetchByCategoryAsync(categoryId)
+    .thenAccept(result -> System.out.println("Fetched category " + categoryId + " -> " + result.products.length + " products"))
     .exceptionally(ex -> { ex.printStackTrace(); return null; });
 ```
 
@@ -208,7 +216,7 @@ Still stuck? Check the SDK tests (`StoreClaimClientTest`, `TestStoreCommand`) fo
 ### 8. Where to Go Next
 
 * **REST endpoints** — Need raw HTTP details or building a non-Java integration? See `docs/storefront-rest-endpoints.md`.
-* **Server delivery guide** — Step-by-step instructions for handing out items in-game: `docs/store-server-integration.md`.
+* **Server delivery guide** — Step-by-step instructions for handing out items in-game: `docs/store-server-claim-guide.md`.
 * **Checkout deep dive** — Advanced validation and error handling: `docs/store-checkout-api.md`.
 
 Happy shipping! If the docs miss something you expected, please let the team know so the next developer has an even smoother journey.
