@@ -7,13 +7,12 @@ description: >-
 
 # TeamGames Claim API
 
-***
-
 ### 1. Grab Your Credentials
 
 1. Sign in to the TeamGames dashboard.
-2. Copy the **Server API Key**. Keep this key private; do not ship it in client builds.
-3. Official TeamGames SDKs accept the raw key and handle Base64 encoding automatically. When you call the REST endpoint yourself, Base64-encode the raw key and send it in the `Authorization` header.
+2. Open your game server → **Integrations** → **Storefront API**.
+3. Copy the **Server API Key**. Keep this key private; do not ship it in client builds.
+4. Official TeamGames SDKs accept the raw key and handle Base64 encoding automatically. When you call the REST endpoint yourself, Base64-encode the raw key and send it in the `Authorization` header.
 
 {% hint style="info" %}
 **REST vs. SDK authentication**\
@@ -27,7 +26,7 @@ description: >-
 
 ```http
 POST /api/v4/store/transaction/update HTTP/1.1
-Host: <your-api-domain>
+Host: api.teamgames.io
 Content-Type: application/json
 Authorization: BASE64_ENCODED_API_KEY
 
@@ -63,8 +62,8 @@ Authorization: BASE64_ENCODED_API_KEY
         "player_name": "Player123",
         "product_id": 42,
         "product_id_string": "42",
-        "product_amount": 5,
-        "amount_purchased": 1,
+        "quantity_to_grant": 5,
+        "quantity_purchased": 1,
         "product_name": "Super Sword",
         "product_price": 14.99
       }
@@ -77,6 +76,9 @@ Authorization: BASE64_ENCODED_API_KEY
 * `status` / `code` describe the outcome (`SUCCESS`, `NO_ITEMS`, `RATE_LIMIT`, `SERVER_NOT_FOUND`, etc.). HTTP status is always 200.
 * `message` is a player-friendly string you can show as-is.
 * `data.claims` contains everything you need to grant the items—each entry mirrors the legacy array format.
+  * `quantity_to_grant` is the number of units you should deliver (it includes any bonus quantities or "give" amounts configured on the product).
+  * `quantity_purchased` is the number of units the player actually paid for during checkout.
+  * Legacy keys `product_amount` / `amount_purchased` are still included for backwards compatibility but will be retired in a future major release.
 * `data.rawTransactions` is populated only when `includeRawTransactions` is `true`; use it for auditing or reconciliation.
 
 #### Common codes
@@ -143,7 +145,7 @@ The Java client accepts the raw API key (no manual Base64 step). Catch exception
 
 {% tab title="cURL" %}
 ```bash
-curl -X POST "https://your-api-domain/api/v4/store/transaction/update" \
+curl -X POST "https://api.teamgames.io/api/v4/store/transaction/update" \
   -H "Content-Type: application/json" \
   -H "Authorization: $(printf %s "$TEAMGAMES_API_KEY" | base64)" \
   -d '{
@@ -153,7 +155,7 @@ curl -X POST "https://your-api-domain/api/v4/store/transaction/update" \
   }'
 ```
 
-Replace `your-api-domain` with the host where your TeamGames API lives. Set `TEAMGAMES_API_KEY` (raw value) before running the command (the `printf | base64` step handles encoding).
+Set `TEAMGAMES_API_KEY` (raw value) before running the command (the `printf | base64` step handles encoding).
 {% endtab %}
 {% endtabs %}
 

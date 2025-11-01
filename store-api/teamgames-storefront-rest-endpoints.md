@@ -7,8 +7,6 @@ description: >-
 
 # TeamGames Storefront REST Endpoints
 
-
-
 ### Quick Start
 
 1. **Copy your API key** from the TeamGames dashboard.
@@ -32,7 +30,7 @@ description: >-
 
 ```http
 POST /api/v2/client/global/products HTTP/1.1
-Host: <your-domain>
+Host: api.teamgames.io
 Content-Type: application/json
 Authorization: BASE64_ENCODED_API_KEY
 
@@ -132,7 +130,7 @@ Ship only the fields required by the API—extra data is ignored and may trigger
 
 ```http
 POST /api/v2/client/global/checkout/complete HTTP/1.1
-Host: <your-domain>
+Host: api.teamgames.io
 Content-Type: application/json
 Authorization: BASE64_ENCODED_API_KEY
 
@@ -182,7 +180,7 @@ Once checkout finishes and the player returns in-game, call the v4 claim endpoin
 
 ```http
 POST /api/v4/store/transaction/update HTTP/1.1
-Host: <your-domain>
+Host: api.teamgames.io
 Content-Type: application/json
 Authorization: BASE64_ENCODED_API_KEY
 
@@ -249,7 +247,7 @@ Common `code` values:
 
 ```http
 POST /api/v3/store/transaction/update HTTP/1.1
-Host: <your-domain>
+Host: api.teamgames.io
 Content-Type: application/json
 x-api-key: YOUR_SERVER_API_KEY
 
