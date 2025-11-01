@@ -40,6 +40,7 @@ Authorization: BASE64_ENCODED_API_KEY
 * Encode the raw API key with Base64 (Node: `Buffer.from(apiKey).toString('base64')`, bash: `echo -n "API_KEY" | base64`).
 * The body may be `{}`; some HTTP clients require a minimal payload.
 * Disabled products and items outside their scheduled availability window are excluded automatically.
+* Using an official TeamGames SDK? Provide the raw key instead—SDK clients handle the Base64 encoding for you.
 
 #### Sample Response
 
