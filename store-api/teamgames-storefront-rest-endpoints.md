@@ -7,6 +7,8 @@ description: >-
 
 # TeamGames Storefront REST Endpoints
 
+
+
 ### Quick Start
 
 1. **Copy your API key** from the TeamGames dashboard.
@@ -41,6 +43,16 @@ Authorization: BASE64_ENCODED_API_KEY
 * The body may be `{}`; some HTTP clients require a minimal payload.
 * Disabled products and items outside their scheduled availability window are excluded automatically.
 * Using an official TeamGames SDK? Provide the raw key instead—SDK clients handle the Base64 encoding for you.
+
+To limit the response to a single category, include its id in the request body:
+
+```json
+{
+  "categoryId": 42
+}
+```
+
+Only products assigned to that category are returned when this field is present.
 
 #### Sample Response
 
@@ -199,8 +211,8 @@ Authorization: BASE64_ENCODED_API_KEY
         "player_name": "Player123",
         "product_id": 42,
         "product_id_string": "42",
-        "product_amount": 5,
-        "amount_purchased": 1,
+        "quantity_to_grant": 5,
+        "quantity_purchased": 1,
         "product_name": "Super Sword",
         "product_price": 14.99
       }
@@ -211,6 +223,10 @@ Authorization: BASE64_ENCODED_API_KEY
 ```
 
 `data.claims` mirrors the legacy response for quick integrations. When `includeRawTransactions` is `true`, `data.rawTransactions` exposes the original database rows with lowercase column names so you can inspect invoices, payment types, or other audit details. Leave it `false` for day-to-day operations so sensitive details stay server-side. The v4 endpoint reuses the Base64 `Authorization` header pattern from catalog/checkout to keep authentication consistent.
+
+* `quantity_to_grant` represents how many units you should deliver (after "give" bonuses or multipliers).
+* `quantity_purchased` is how many units the buyer actually paid for in the cart.
+* Legacy keys `product_amount` / `amount_purchased` are still returned for older integrations; plan to migrate to the new names.
 
 Common `code` values:
 
@@ -263,4 +279,4 @@ After you grant the items in-game, the backend automatically marks the transacti
 
 1. **Redirect immediately** when you receive a `redirect` URL.
 2. **Handle callbacks/IPN**: keep `transactionId` handy so you can reconcile gateway notifications.
-3. **Fulfill purchases** using `POST /api/v4/store/transaction/update` once payments settle (see above and `docs/store-server-integration.md`). The legacy v3 endpoint remains available for older integrations.
+3. **Fulfill purchases** using `POST /api/v4/store/transaction/update` once payments settle (see above and `docs/store-server-claim-guide.md`). The legacy v3 endpoint remains available for older integrations.
