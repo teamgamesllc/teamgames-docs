@@ -7,9 +7,19 @@ description: >-
 
 # TeamGames Claim API
 
+***
+
+### 1. Grab Your Credentials
+
 1. Sign in to the TeamGames dashboard.
 2. Copy the **Server API Key**. Keep this key private; do not ship it in client builds.
 3. Official TeamGames SDKs accept the raw key and handle Base64 encoding automatically. When you call the REST endpoint yourself, Base64-encode the raw key and send it in the `Authorization` header.
+
+{% hint style="info" %}
+**REST vs. SDK authentication**\
+• **REST callers**: Base64-encode the raw key and place it in `Authorization`.\
+• **TeamGames SDKs**: supply the raw key as-is; the helper does the encoding for you.
+{% endhint %}
 
 ***
 
@@ -19,7 +29,7 @@ description: >-
 POST /api/v4/store/transaction/update HTTP/1.1
 Host: <your-api-domain>
 Content-Type: application/json
-Authorization: BASE64_ENCODED_API_KEY  # raw key when using an SDK
+Authorization: BASE64_ENCODED_API_KEY
 
 {
   "playerName": "Player123",
@@ -34,7 +44,9 @@ Authorization: BASE64_ENCODED_API_KEY  # raw key when using an SDK
 | `preview`                | Optional. `true` runs a dry run—returns the items but does not mark them delivered.                   |
 | `includeRawTransactions` | Optional. `true` adds the database rows (invoice, payment type, etc.). Leave `false` for normal play. |
 
-> **Rate limiting:** Each player is rate-limited to one claim call every ten seconds (per game server). Surface the response message verbatim so players know when to retry.
+{% hint style="danger" %}
+**Respect rate limits** – Each player can hit the claim endpoint once every ten seconds (per game server). Surface the response message verbatim so players know when to retry.
+{% endhint %}
 
 ***
 
@@ -90,10 +102,46 @@ Authorization: BASE64_ENCODED_API_KEY  # raw key when using an SDK
 * [ ] Grant items atomically and log invoice/product IDs for support investigations.
 * [ ] Monitor claim attempts, successes, and failures to catch key leaks early.
 
+{% hint style="info" %}
+Tracking these items turns the claim flow into a "set it and forget it" automation. Most support issues stem from missing audit logs or misunderstood throttling—checking these boxes up front avoids both.
+{% endhint %}
+
 ***
 
-### 5. Quick cURL Test
+### 5. Try It Yourself (Pick Your Stack)
 
+{% tabs %}
+{% tab title="Java (SDK)" %}
+```java
+import com.teamgames.endpoints.store.StoreClaimClient;
+import com.teamgames.endpoints.store.Transaction;
+
+public class ClaimExample {
+    public static void main(String[] args) throws Exception {
+        String apiKey = System.getenv("TEAMGAMES_API_KEY");
+        if (apiKey == null || apiKey.trim().isEmpty()) {
+            throw new IllegalStateException("TEAMGAMES_API_KEY is not set.");
+        }
+
+        StoreClaimClient claimClient = new StoreClaimClient(apiKey);
+        Transaction.ClaimResponse response = claimClient.newRequest()
+            .playerName("Player123")
+            .useV4Endpoint()
+            .preview(false)
+            .includeRawTransactions(false)
+            .execute();
+
+        System.out.println("Status: " + response.status + " (" + response.code + ")");
+        System.out.println("Message: " + response.message);
+        System.out.println("Items to grant: " + response.data.claims.length);
+    }
+}
+```
+
+The Java client accepts the raw API key (no manual Base64 step). Catch exceptions or inspect `response.code` to drive your fulfillment logic.
+{% endtab %}
+
+{% tab title="cURL" %}
 ```bash
 curl -X POST "https://your-api-domain/api/v4/store/transaction/update" \
   -H "Content-Type: application/json" \
@@ -105,10 +153,16 @@ curl -X POST "https://your-api-domain/api/v4/store/transaction/update" \
   }'
 ```
 
-Replace `your-api-domain` with the host where your TeamGames API lives. Set `TEAMGAMES_API_KEY` (raw value) before running the command.
+Replace `your-api-domain` with the host where your TeamGames API lives. Set `TEAMGAMES_API_KEY` (raw value) before running the command (the `printf | base64` step handles encoding).
+{% endtab %}
+{% endtabs %}
 
 ***
 
 ### 6. Legacy Array Response (v3)
 
 Need to keep an older integration alive? `POST /api/v3/store/transaction/update` still returns the historical array and expects the `x-api-key` header. It does **not** include the status envelope or preview support, so plan your migration to v4 when possible.
+
+{% hint style="info" %}
+**Need assistance?** Reach out through the TeamGames dashboard → Support, or email support@teamgames.io with the request ID (`status`, `code`, `message`) and the player name you attempted to fulfill. The team can help trace logs or rotate credentials quickly.
+{% endhint %}
