@@ -9,11 +9,11 @@ description: >-
 
 ### 1. Before You Start
 
-| Requirement                                    | Why it matters                                                     |
-| ---------------------------------------------- | ------------------------------------------------------------------ |
-| Java 8 or newer                                | All helpers compile against Java 8 bytecode.                       |
-| TeamGames API key (`TEAMGAMES_API_KEY`)        | Authenticates every request. Grab it from the TeamGames dashboard. |
-| Internet access to `https://api.teamgames.io/` | The helpers point to this domain by default.                       |
+| Requirement                                    | Why it matters                                                                                                                 |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Java 8 or newer                                | All helpers compile against Java 8 bytecode.                                                                                   |
+| TeamGames API key (`TEAMGAMES_API_KEY`)        | Authenticates every request. Grab it from the TeamGames dashboard (pass the raw key; the SDK handles Base64 encoding for you). |
+| Internet access to `https://api.teamgames.io/` | The helpers point to this domain by default.                                                                                   |
 
 > Tip: Export your API key once in your shell profile (`export TEAMGAMES_API_KEY=...`) so every demo and integration code picks it up automatically.
 
@@ -36,6 +36,8 @@ Usage pattern:
 2. Call `newRequest()` (or equivalent) to get a single-use builder.
 3. Configure the request (username, cart items, preview flag).
 4. Execute synchronously (`execute()`, `fetch()`, `submit()`) or asynchronously (`executeAsync()`, etc.).
+
+> Important: pass the raw API key into the clients—the helpers encode it for you. Pre-encoding the key will cause `GAME_SERVER_NOT_FOUND` responses.
 
 ***
 
